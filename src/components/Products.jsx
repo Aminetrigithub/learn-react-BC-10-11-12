@@ -1,3 +1,5 @@
+import Counter from "./Counter";
+
 function Products() {
   let title = "Learn How to create apps with reactjs 2023";
   let showList = true;
@@ -23,6 +25,9 @@ function Products() {
         nostrum tempora fuga vitae sapiente modi laboriosam, explicabo in
         perspiciatis facere.
       </p>
+
+      <Counter />
+     
 
       {showList && (
         <ul>
