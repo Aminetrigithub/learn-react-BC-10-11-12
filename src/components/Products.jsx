@@ -1,4 +1,5 @@
 import Counter from "./Counter";
+import Product from "./Product";
 
 function Products() {
   let title = "Learn How to create apps with reactjs 2023";
@@ -30,11 +31,13 @@ function Products() {
      
 
       {showList && (
-        <ul>
+        <div>
           {products.map((product, index) => (
-            <li key={index}>{product.label}</li>
+            <div key={index}>
+              <Product label={product.label} price={product.price} />
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
