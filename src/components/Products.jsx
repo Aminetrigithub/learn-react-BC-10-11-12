@@ -1,10 +1,12 @@
+import { useState } from "react";
 import Counter from "./Counter";
 import Product from "./Product";
 
 function Products() {
   let title = "Learn How to create apps with reactjs 2023";
   let showList = true;
-  let products = [
+
+  const [products, setProducts] = useState([
     {
       id: 1,
       label: "Iphone 13",
@@ -15,8 +17,17 @@ function Products() {
       label: "Samsung",
       price: 1200,
     },
-  ];
+    {
+      id: 3,
+      label: "LG",
+      price: 1750,
+    },
+  ]);
 
+  const deleteProduct = (id) => {
+    let mylist = products.filter((pr) => pr.id !== id);
+     setProducts(mylist);
+  };
   return (
     <div>
       <h1>{title}</h1>
@@ -28,13 +39,19 @@ function Products() {
       </p>
 
       <Counter />
-     
 
       {showList && (
         <div>
           {products.map((product, index) => (
             <div key={index}>
-              <Product label={product.label} price={product.price} />
+              <Product id={product.id} onDeleteProduct={deleteProduct} >
+                <div className="card-body">
+                  <h4 className="card-title">{product.label}</h4>
+                  <p className="card-text">
+                    <button className="btn btn-danger">{product.price}</button>
+                  </p>
+                </div>
+              </Product>
             </div>
           ))}
         </div>
