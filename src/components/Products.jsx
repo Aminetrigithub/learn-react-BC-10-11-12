@@ -8,6 +8,9 @@ function Products() {
 
 const [title, setTitle]= useState("");
 const [price, setPrice]= useState("");
+const [message, setMessage]= useState("")
+
+
 
 const submitForm = (e) => { e.preventDefault()  
   
@@ -17,9 +20,23 @@ const submitForm = (e) => { e.preventDefault()
     price
    }
    setProducts( [myProduct, ...products ] )
+   setTitle("");
+   setPrice("");
   }
 
-let titleInput = (e) => { setTitle(e.target.value)  }
+let titleInput = (e) => {  
+if (e.target.value === "")
+setMessage("please insert a title of product")
+//console.error("please insert a titleof product!!!!!");
+else if(e.target.value.trim().length < 3 )
+setMessage("product not defined less than 3 caracters")
+//console.error("product not defined!!!!!");
+else {
+setMessage(null);
+setTitle(e.target.value);}
+}
+
+
 let priceInput = (e) => { setPrice(e.target.value)  }
 
 
@@ -64,10 +81,11 @@ let priceInput = (e) => { setPrice(e.target.value)  }
 <form action="" onSubmit={submitForm}>
 <div>
 <label htmlFor="">Title</label>
-<input onChange={titleInput} className="form-control my-2 " type="text" />
-
+<input defaultValue={title} onChange={titleInput} className="form-control my-2 " type="text" />
+{ message && <div className="alert alert-danger">{message}</div>
+}
 <label htmlFor="">Price</label>
-<input onChange={priceInput} className="form-control my-2 " type="text" />
+<input value={price} onChange={priceInput} className="form-control my-2 " type="text" />
 </div>
 <button className="btn btn-info my-2"> Save </button>
 </form>
