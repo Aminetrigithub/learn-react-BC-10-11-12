@@ -27,13 +27,14 @@ const submitForm = (e) => { e.preventDefault()
 let titleInput = (e) => {  
 if (e.target.value === "")
 setMessage("please insert a title of product")
-//console.error("please insert a titleof product!!!!!");
+
 else if(e.target.value.trim().length < 3 )
 setMessage("product not defined less than 3 caracters")
-//console.error("product not defined!!!!!");
+
 else {
-setMessage(null);
-setTitle(e.target.value);}
+setTitle(e.target.value);
+setMessage(null);}
+
 }
 
 
